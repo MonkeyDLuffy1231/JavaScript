@@ -53,3 +53,17 @@ if(a1 == a2){
 }else{
     console.log("a1 != a2");
 }
+
+//typeof operator
+var a3 ;
+console.log(a3+" = "+typeof a3);//undefined
+a3 = 10;
+console.log(a3+" = "+typeof a3);// number
+a3  = null;
+console.log(a3+" = "+typeof a3);//object(it is bug) this should be null 
+a3 = "aaaa";
+console.log(a3+" = "+typeof a3);//string
+a3 = 'a';
+console.log(a3+" = "+typeof a3);//string
+a3 = false;
+console.log(a3+" = "+typeof a3);//boolean
