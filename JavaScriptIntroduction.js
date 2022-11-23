@@ -67,3 +67,79 @@ a3 = 'a';
 console.log(a3+" = "+typeof a3);//string
 a3 = false;
 console.log(a3+" = "+typeof a3);//boolean
+
+//type coercion
+var a4 = 123;
+var a5 = "4";
+var a6 = a4+a5;
+console.log(a6+" = "+typeof a6);
+
+a4 = 10;
+a5 = "10";
+
+// == if their are two diff type of values then implicity cast one value to another type and then compare 
+if(a4 == a5){
+    console.log(a4+" == "+a5);
+}else{
+    console.log(a4+" != "+a5);
+}
+
+//while comparing two diff type values use  === as a operator
+if(a4 === a5){
+    console.log(a4+" === "+a5);
+}else{
+    console.log(a4+" != "+a5);
+}
+
+var a6;
+if(a6){
+    console.log("non zero");
+}else{
+    console.log("zero");//prints
+}
+
+//creating an object
+var object1 = {};
+console.log("empty object = ",object1);
+object1.prop1 = "Hello";
+console.log("object = ",object1);
+object1.prop2 = 23;
+console.log("object = ",object1);
+console.log("prop1 = ",object1.prop1);
+console.log("prop2 = ",object1.prop2);
+
+//creating object with literal
+var person = {
+    "name" : "Naruto",
+    "age" : 25,
+    "address" : "Hidden leaf village"
+};
+   console.log("person height = "+person.height);//height property is not there in person so o/p will be undefied
+   console.log("person = ",person);
+   console.log("using . notation  = ",person.name);
+   console.log("using [] notation = ",person["address"]);
+
+
+//property name is dynamic
+var personAge = "age";
+console.log(person[personAge]);
+
+//nested object
+var object1 = {
+   "prop1" : "abc",
+   "prop2" : 10,
+   "innerObj" :{
+        "innerObjProp1" : true
+   }
+};
+object1.innerObj.innerObjProp2 = 111;//to add property dynamically to an object
+console.log("object1 = ", object1);
+
+var object2;
+object2 = object1;
+
+if(object1 === object2){
+    console.log("equals");
+}else{
+    console.log("not equals");
+}
