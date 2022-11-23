@@ -143,3 +143,88 @@ if(object1 === object2){
 }else{
     console.log("not equals");
 }
+
+//deleting property in obj
+var person1 = {
+    firstName : "Ichigo",
+    lastName : "Kurosaki",
+    age : 22
+}
+console.log("person1 before deleting property = ",person1);
+delete person1.age;
+console.log("person1 after deleting property = ",person1);
+
+//Array
+var myArray = [10,'Hello',true];
+console.log(myArray);
+console.log(myArray[2]);
+console.log(myArray[3]);
+myArray[1] = 11;// updates value from Hello to 11
+console.log(myArray);
+myArray[3] = "hi";
+console.log(myArray);
+console.log("myArray length = ",myArray.length);
+console.log("typeof myArray = ",typeof myArray);//object =>array is an object in JS
+console.log(myArray["3"]);
+console.log("typeof myArray[2] = ",typeof myArray[2]);
+
+var a7 = "111";
+console.log("a7.length = ",a7.length);//3
+
+//functions in JavaScript
+function addTwoNumber(num1 , num2){
+    console.log("adding ",num1," and ",num2," = ",(num1+num2));
+}
+
+addTwoNumber(10,20);//o/p : adding  10  and  20  =  30
+addTwoNumber(10); //o/p : adding  10  and  undefined  =  NaN
+addTwoNumber(10,11,10,01,22);//o/p adding  10  and  20  =  30 here 10,01,22 will be ignored first 2 ele will be considered
+//function overloading is not possible in Javascript
+//functions name must be unique
+
+//function with return stmt4
+function multiplyTwoNumbers(num1, num2){
+    return (num1 * num2);
+}
+
+var multiplicationOfTwoNumber  = multiplyTwoNumbers(10,20);
+console.log("multiplication of two numbers : ",multiplicationOfTwoNumber);
+
+//function expression
+var greeting = function hello(){
+    console.log("Hello");
+};
+
+var greeting1 = greeting;
+console.log(greeting1);//[Function: greeting]
+greeting1();//invokes function greeting
+//hello();//ReferenceError: hello is not defined
+//anonyomus function
+var greet = function (){
+    console.log("hiii");
+}
+
+greet();
+/*greet =1;
+greet();//TypeError: greet is not a function*/
+
+//function as argument
+var greet1 = function(name){
+    console.log("hello ",name);
+}
+
+var execute = function(aa,name){
+    aa(name);
+}
+execute(greet1,"pranav");
+
+//functions on object
+var object3 = {
+    "prop1" : "hee"
+};
+object3.myFunction = function () {
+    console.log("in object3 function");
+};
+
+console.log("object3 = ",object3);
+object3.myFunction();
