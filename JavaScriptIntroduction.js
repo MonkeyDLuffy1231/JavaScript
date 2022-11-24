@@ -301,5 +301,25 @@ console.log("shift => delete ele at 0th index = ",myArray1.shift());
 var myFunction1 = function(value){
     console.log(value);
 };
-
 myArray1.forEach(myFunction1);
+
+var myFunction2 = function(item, index, array){
+    console.log(index," : ",item);
+};
+myArray1.forEach(myFunction2);
+
+//random numbers from 0 to 100
+console.log("random numbers from 0 to 100 : ");
+for(var i = 0; i < 10; i++){
+    console.log(Math.round(Math.random() * 100));
+}
+console.log("printig random number is completed");
+
+//Date object
+var currentDateAndTime = new Date();
+console.log(currentDateAndTime); 
+console.log("date = ",currentDateAndTime.getDate());
+console.log("day = ",currentDateAndTime.getDay());
+console.log("month = ",(currentDateAndTime.getMonth()+1));
+console.log("year = ",currentDateAndTime.getFullYear());
+console.log("time = ",currentDateAndTime.getTime());
