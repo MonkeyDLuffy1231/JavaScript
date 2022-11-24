@@ -228,3 +228,78 @@ object3.myFunction = function () {
 
 console.log("object3 = ",object3);
 object3.myFunction();
+
+//this keyword
+var ninja = {
+    "firstName" : "Naruto",
+    "lastName" : "Uzumaki",
+    "clan" : "Uzumaki",
+    "village" : "Hidden leaf village",
+    "bio" : function (){
+        return this.firstName+" "+this.lastName+" from "+this.village
+    }
+};
+
+var ninja1 = ninja;
+
+var ninjaBio = ninja.bio();
+console.log(ninjaBio);
+ninja = {};
+var ninjaBio1 = ninja1.bio();
+console.log(ninjaBio);
+
+var actor = {
+    "firstName" : "Kichcha",
+    "lastName" : "Sudeep",
+    "fullName" : function(){
+        return this.firstName+" "+this.lastName;
+    },
+    "address" : {
+        "street" : "2nd main",
+        "area" : "JP Nagar",
+        "city":"Bengaluru",
+        "state":"Karnataka"
+    },
+    "isFromCity" : function(city){
+        /*if(this.address.city === city){
+            console.log(true);
+        }else{
+            console.log(false);
+        }*/
+        console.log(this.address.city === city);
+    }
+};
+console.log(actor);
+
+actor.isFromCity("Bengaluru");
+
+//default function argument
+var sum  = function(){
+    var sumOfNumbers = 0;
+    for(var i = 0; i < arguments.length;i++){
+        sumOfNumbers += arguments[i];
+    }
+    return sumOfNumbers;
+}
+console.log(sum(10,20,30,40,50,60,70));
+
+//array methods
+
+var myArray1 = [10,20.012,"str",false,{},function(){}];
+console.log("myArray1 length = ",myArray1.length);
+console.log("myArray1 = ",myArray1);
+console.log("add 1 at last in array = "+myArray1.push(1));
+console.log("myArray1 = ",myArray1);
+console.log("myArray1 length = ",myArray1.length);
+console.log("remove 1 ele from last = ",myArray1.pop());
+console.log("myArray1 length = ",myArray1.length);
+console.log("unshift => add els at 0th index =",myArray1.unshift(11));
+console.log("array = ",myArray1," ,array length",myArray1.length);
+console.log("shift => delete ele at 0th index = ",myArray1.shift());
+
+//for each
+var myFunction1 = function(value){
+    console.log(value);
+};
+
+myArray1.forEach(myFunction1);
