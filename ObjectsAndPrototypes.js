@@ -149,3 +149,96 @@ mike.inflateTire = bicycle4.inflateTire;
 console.log("bicycle5 : ",bicycle5);
 mike.inflateTire.call(bicycle5);
 console.log("bicycle5 : ",bicycle5);
+
+//PROTOTYPES => prototypes in javascript is a concept which lets you build Objects using template or blueprint
+
+function fun(){}
+console.log("fun : ",fun);
+console.log("fun.prototype : ",fun.prototype);
+console.log("fun() : ",fun());
+console.log("new fun() : ",new fun());
+var funObj = new fun();
+console.log(funObj);
+
+function greeting(){
+    console.log("Hello");
+}
+console.log("greeting : ",greeting);
+console.log("greeting.prototype : ",greeting.prototype);
+
+greeting.prototype.test = "this is one prototype";
+console.log("greeting.prototype.test : ", greeting.prototype.test);
+
+var b = new greeting();
+console.log("b.__proto__.test : ",b.__proto__.test);
+
+console.log(greeting.prototype === b.__proto__);
+
+greeting.hello = "hii";
+console.log("greeting.hello : ",greeting.hello);
+delete greeting.hello;
+console.log("greeting.hello : ",greeting.hello);
+b.__proto__.hello = "Yo";
+console.log("b.__proto__.hello : ",b.__proto__.hello);
+console.log("b.hello : ",b.hello);//even though b obj dont have hello property but however prototype obj has hello so internally calls b.__proto__.hello
+console.log("b.test : ",b.test);//if b.test is not their in obj b then it checks in prototype object b.__proto__test if present prints value
+b.test = 10;
+console.log("b.test : ",b.test);//10
+delete b.test;
+console.log("b.test : ",b.test);//this is one prototype
+
+function Employee(name){
+    this.name = name;
+}
+
+var emp11 = new Employee("Jim");
+console.log("emp11 : ",emp11);
+var emp12 = new Employee("Pam");
+console.log("emp12 : ",emp12);
+console.log("Employee.prototype : ",Employee.prototype);
+
+Employee.prototype.playPrank = function(){console.log("prank played!!");}
+emp11.playPrank();
+emp12.playPrank();
+
+//__proto__ is also called as dender proto.
+
+console.log(Employee === emp11.__proto__.constructor);//true //Prototype object has a property called constructor which is
+// pointing to the function which created prototype object
+
+//OBJECT FUNCTION
+/*In JavaScript runtime environment just like global window object you also have som global functions
+and one function is called object function but the typeof object is function */
+
+//2 ways to create empty obj
+//1st way 
+var simpleObject = {};
+console.log("simpleObject : ",simpleObject);
+//2nd way
+var obj = new Object();
+console.log("obj : ",obj);
+
+console.log(simpleObject.__proto__.constructor === obj.__proto__.constructor);//true
+
+console.log("Object.__proto__ : ",Object.__proto__.__proto__);//[Object: null prototype] {}
+
+//Inheritance in JS
+function EmployeeObject(name){
+    this.name = name;
+}
+EmployeeObject.prototype.getName = function(){return this.name};
+var emp2 = new EmployeeObject("Jim");
+
+function ManagerObject(name, dept){
+    this.name = name;
+    this.dept = dept;
+}
+var manager = new ManagerObject("Michael","sales");
+ManagerObject.prototype.getDept = function(){return this.dept};
+console.log("manager.getDept() : ",manager.getDept());//sales
+//console.log("manager.getName() : ",manager.getName());//TypeError: manager.getName is not a function
+
+manager.__proto__.__proto__ = EmployeeObject.prototype;//doubt!! why not? MangerObject.prototype._proto__
+console.log("manager.getName() : ",manager.getName());
+
+
