@@ -66,7 +66,7 @@ console.log("bicycle3 : ",bicycle3);//undefined
 /* 1 => invoking using function name regularly -> functionName();
    2 => if function is inside the object and  ur calling using ->  objectName.functionName();
    3 => using constructor (new keyword)
-   4 =>     */ 
+   4 => using function objects property called call() which is function    */ 
 //note : function object is created at the interpretation stage
 
 //1st way
@@ -88,4 +88,64 @@ myObject.foo();
 //3rd way
 new foo();
 
+//4th way
+foo.call();
 
+//this  => represents current Onbject
+
+//Objects and Prototypes In-depth 09 - Working on objects with this reference
+function BicycleObject(cadence, speed, gear, tirePressure){
+    this.cadence = cadence;
+    this.speed = speed;
+    this.gear = gear;
+    this.tirePressure = tirePressure;
+    this.inflateTire = function(){
+        this.tirePressure += 3;
+    }
+}
+
+var bicycle4 = new BicycleObject(40, 50, 4, 30);
+bicycle4.inflateTire();
+console.log("bicycle4 : ",bicycle4);
+
+var bicycle5 = new BicycleObject(40, 30, 2, 22);
+bicycle5.inflateTire();
+console.log("bicycle5 : ",bicycle5);
+
+
+// function Mechanic(name, Bicycle){
+//     this.name = name;
+//     this.Bicycle = Bicycle;
+//     this.inflateTire = function(){
+//         this.Bicycle.inflateTire();
+//     }
+// }
+
+// var Mike = new Mechanic("Mike",bicycle5);
+// Mike.inflateTire();
+// console.log("**************");
+// console.log("bicycle5 : ",bicycle5);
+// console.log("**************");
+// console.log(Mike.Bicycle.tirePressure);
+
+//Objects and Prototypes In-depth 10 - Using the call function
+
+//Every function object have out of the box property called -> call()
+
+function greet(){
+    this.num = 10;
+    console.log("hellooo");
+}
+
+greet.call({});// when using call() is invoked this ref of greet function will this reference will binds to the object which is passed as arg ({})
+//now whenever you access this in greet fun , this will bound to object which is passed as argument in call
+
+function Mechanic(name){
+    this.name = name;
+}
+
+var mike = new Mechanic("Mike");
+mike.inflateTire = bicycle4.inflateTire;
+console.log("bicycle5 : ",bicycle5);
+mike.inflateTire.call(bicycle5);
+console.log("bicycle5 : ",bicycle5);
