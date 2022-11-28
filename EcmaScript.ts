@@ -98,18 +98,104 @@ getValue(1);//6
 getValue(5,10);//15
 getValue(undefined,11);//11
 
-//REST OPERATOR
+//REST OPERATOR => functionName(...variable)
 //below code will not work in ESCM Script 
-// let displayColors = function (){
-//     for(let i in arguments){
-//         console.log(arguments[i]);
-        
-//     }
-// }
-// var message = "List of Colors";
-// displayColors(message,"red");
-// displayColors("red","blue");
-// displayColors("red","blue","green");
+let displayColors = function (message, ...colors){
+    for(let i in arguments){
+        if(i == "1"){
+            console.log(colors);//prints colors arg as a array
+            
+        }
+        console.log(arguments[i]);
+    }
+}
+var message = "List of Colors";
+displayColors(message,"red");
+displayColors(message,"red","blue");
+displayColors(message,"red","blue","green");
+
+//SPREAD OPERATOR
+let colorsOfArray = ["orange", "white", "black"];
+displayColors(message,...colorsOfArray); //same as rest operator but rest operator is use for argument and spread operator which used as parameter
+
+//OBJECT LITERAL
+let firstName = "Madara";
+let lastName = "Uchiha";
+
+let person = { //here  (after  =) which is LHS side is person Object literal
+    firstName,
+    lastName
+};
+
+function createPerson(firstName = undefined , lastName = undefined, age){
+    let fullName = firstName +" "+ lastName;
+    return {
+        firstName, 
+        lastName, 
+        fullName,
+        isSenior : function(){
+            return age >= 60;
+        }
+    };//this returns as a object
+}
+
+let p = createPerson("Madara", "Uchiha",100);
+console.log(p);
+console.log(typeof p);
+console.log(p.isSenior());
+
+let ln = "lastName";
+let employee = {
+    "firstName" : "Nico",
+    [ln] : "rabin"
+};
+
+console.log(employee);
+
+//Destructuring Array => taking individally ele from array and assign it to individual variables
+
+let ninja = ["Shikamaru", "Nara", "Chunin"];
+let [firstName1, lastName1, rank1 = "genin"] = ninja; // here rank1 has default value genin 
+console.log("firstName1 : ",firstName1);
+console.log("lastName1 : ",lastName1);
+console.log("rank1 : ",rank1);
+
+//if we need only 1 ele from array using destructring
+let [,,rank] = ninja;
+console.log("rank : ",rank);
+
+// creating new array from 1 array using destructre
+let [firstName2, ...elements] = ninja;
+console.log(firstName2," ",elements);
+
+//Destructure Object
+let ninja1 = {
+    "firstName3" : "Naruto",
+    "lastName3" : "Uzumaki",
+    "rank3": "genin"
+};
+let {firstName3 : f , lastName3 : l, rank3 : r} = ninja1; // if variable name is lengthy change the name  like this : firstName3 : f //you can use f whenever you want
+console.log("firstName3 : ",f);
+console.log("lastName3 : ",l);
+console.log("rank3 : ",r);
+
+//STRING TEMPLATE
+
+let pirate = "Monkey.D.Luffy";
+let greeting = `Hello  ${pirate} 'single quote' "double quote"`;//we can use like this for string concate instead of + sign 
+//we can use '," directly using string template
+console.log(greeting);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,16 @@
 //JavaScript is one the implementation of standard specification called ECMA Script.
 //ES 2015 is also known as ES6 
 //ES 2015 => ES5 + new features like (constants, classes etc)
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var _a;
 //Transpiler which takes ES2015 source code we write it generates ES5 code that runs in every browser
 //Transpiler => Tracer , Bable, TypeScript  
 //npm => Node Package Manager is manager that is going to help manage our dependencies
@@ -81,13 +91,82 @@ getValue(); //5
 getValue(1); //6
 getValue(5, 10); //15
 getValue(undefined, 11); //11
-//REST OPERATOR
-// let displayColors = function (){
-//     for(let i in arguments){
-//         console.log(arguments[i]);
-//     }
-// }
-// var message = "List of Colors";
-// displayColors(message,"red");
-// displayColors("red","blue");
-// displayColors("red","blue","green");
+//REST OPERATOR => functionName(...variable)
+//below code will not work in ESCM Script 
+var displayColors = function (message) {
+    var colors = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        colors[_i - 1] = arguments[_i];
+    }
+    for (var i in arguments) {
+        if (i == "1") {
+            console.log(colors); //prints colors arg as a array
+        }
+        console.log(arguments[i]);
+    }
+};
+var message = "List of Colors";
+displayColors(message, "red");
+displayColors(message, "red", "blue");
+displayColors(message, "red", "blue", "green");
+//SPREAD OPERATOR
+var colorsOfArray = ["orange", "white", "black"];
+displayColors.apply(void 0, __spreadArray([message], colorsOfArray, false)); //same as rest operator but rest operator is use for argument and spread operator which used as parameter
+//OBJECT LITERAL
+var firstName = "Madara";
+var lastName = "Uchiha";
+var person = {
+    firstName: firstName,
+    lastName: lastName
+};
+function createPerson(firstName, lastName, age) {
+    if (firstName === void 0) { firstName = undefined; }
+    if (lastName === void 0) { lastName = undefined; }
+    var fullName = firstName + " " + lastName;
+    return {
+        firstName: firstName,
+        lastName: lastName,
+        fullName: fullName,
+        isSenior: function () {
+            return age >= 60;
+        }
+    }; //this returns as a object
+}
+var p = createPerson("Madara", "Uchiha", 100);
+console.log(p);
+console.log(typeof p);
+console.log(p.isSenior());
+var ln = "lastName";
+var employee = (_a = {
+        "firstName": "Nico"
+    },
+    _a[ln] = "rabin",
+    _a);
+console.log(employee);
+//Destructuring Array => taking individally ele from array and assign it to individual variables
+var ninja = ["Shikamaru", "Nara", "Chunin"];
+var firstName1 = ninja[0], lastName1 = ninja[1], _b = ninja[2], rank1 = _b === void 0 ? "genin" : _b; // here rank1 has default value genin 
+console.log("firstName1 : ", firstName1);
+console.log("lastName1 : ", lastName1);
+console.log("rank1 : ", rank1);
+//if we need only 1 ele from array using destructring
+var rank = ninja[2];
+console.log("rank : ", rank);
+// creating new array from 1 array using destructre
+var firstName2 = ninja[0], elements = ninja.slice(1);
+console.log(firstName2, " ", elements);
+//Destructure Object
+var ninja1 = {
+    "firstName3": "Naruto",
+    "lastName3": "Uzumaki",
+    "rank3": "genin"
+};
+var f = ninja1.firstName3, l = ninja1.lastName3, r = ninja1.rank3; // if variable name is lengthy change the name  like this : firstName3 : f //you can use f whenever you want
+console.log("firstName3 : ", f);
+console.log("lastName3 : ", l);
+console.log("rank3 : ", r);
+//STRING TEMPLATE
+var pirate = "Monkey.D.Luffy";
+var greeting = "Hello  ".concat(pirate, " 'single quote' \"double quote\""); //we can use like this for string concate instead of + sign 
+//we can use '," directly using string template
+console.log(greeting);
