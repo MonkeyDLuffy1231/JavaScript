@@ -253,7 +253,98 @@ var Employee = /** @class */ (function (_super) {
 }(Person));
 var emp1 = new Employee("Chandler");
 console.log(emp1.getID());
-//Modules => In JavaScript modules are implemented as a libraries they are not built into the language
-//but in ES2015 module syntax as been standardized
-//Module Syntax - ES2015
-//Module Loading - WIP
+//Sets and Maps
+//sets => set is a data structure which contains list of values which are unique
+var mySet = new Set();
+mySet.add(10);
+console.log("size : ", mySet.size);
+mySet.add(10);
+mySet.add(20);
+console.log("size : ", mySet.size);
+console.log("mySet : ", mySet);
+var obj1 = {};
+var obj2 = {};
+mySet.add(obj1);
+mySet.add(obj1);
+console.log("mySet : ", mySet); //mySet :  Set(3) { 10, 20, {} }
+mySet.add(obj2);
+console.log("mySet : ", mySet); //mySet :  Set(4) { 10, 20, {}, {} } ==> bcz obj1 and obj are pointing to two different objects
+var chainSet = new Set().add("Hello").add("World");
+console.log("chainSet : ", chainSet);
+console.log("To check wheather Hello is present in set or not : ", chainSet.has("Hello")); //using has("value") returns true or false
+console.log("delete Hello : ", chainSet["delete"]("Hello")); //returns true if ele deleted from set else false
+console.log("chainSet : ", chainSet);
+//above code sets is called strong set bcz it store obj references even if ref is pointing to null(all the reference pointing to obj/var are removed)
+//ref still be in the set so it is called strong set
+//To remove the ref which is not pointing to obj/values ES6 introduced weakSet, in weakSet this ref will be allowed for garbage collection
+//we can add only objects in weak set
+var set1 = new WeakSet();
+var obj3 = {};
+set1.add(obj3);
+console.log("set1 : ", set1);
+console.log("set1.has(obj3) : ", set1.has(obj3));
+obj3 = null;
+console.log("set1 : ", set1);
+console.log("set1.has(obj3) : ", set1.has(obj3));
+//diff b/w weakSet and Strong set is memory managed properly in weakSet
+//MAPS => key value pair
+var myMap = new Map();
+myMap.set("name", "luffy");
+myMap.set("age", 23);
+console.log("myMap.get(\"name\") : ", myMap.get("name")); //returns value
+myMap.set(obj1, 10); //obj1 = {};
+myMap.set(obj2, 20); //obj2 = {};
+console.log("size : ", myMap.size); //4
+//Iterating over maps
+var myMap1 = new Map();
+myMap1.set("name", "luffy");
+myMap1.set("age", 23);
+//below iterator is not recommended for printing both values and keys, it is recommended only to print keys
+for (var _d = 0, _e = myMap1.keys(); _d < _e.length; _d++) {
+    var key = _e[_d];
+    console.log("key : ", key);
+    console.log("value : ", myMap1.get(key));
+}
+/*output :
+key :  name
+value :  luffy
+key :  age
+value :  23
+*/
+//to print only values
+for (var _f = 0, _g = myMap1.values(); _f < _g.length; _f++) {
+    var values = _g[_f];
+    console.log("values : ", values);
+}
+/*
+values :  luffy
+values :  23)
+*/
+for (var _h = 0, _j = myMap1.entries(); _h < _j.length; _h++) {
+    var entries = _j[_h];
+    console.log(entries);
+}
+/*output :
+['name', 'luffy']
+['age', 23]
+*/
+//ES5 has foreach loop
+var arrayOfNumbers = [10, 20, 30, 40];
+arrayOfNumbers.forEach(arrayFunction);
+function arrayFunction(element, index, array) {
+    console.log("arr[" + index + "] : " + element);
+}
+//in ES2015 we have foreach in maps and sets as well
+var myMap2 = new Map([["name", "Naruto"], ["age", 23]]);
+myMap2.forEach(mapFunction);
+function mapFunction(value, key, callingMap) {
+    console.log(key, " : ", value);
+    console.log("myMap2 === callingMap : ", myMap2 === callingMap);
+}
+var newSet = new Set([1, 2, 3, 4]);
+newSet.forEach(setFunction);
+function setFunction(value, key, callingSet) {
+    console.log(key, " : ", value);
+    console.log("newSet === callingSet : ", newSet === callingSet);
+}
+//just like weak sets we also have weak maps in ES2015 keys must be objects and the object references are weak
