@@ -1,6 +1,21 @@
 //JavaScript is one the implementation of standard specification called ECMA Script.
 //ES 2015 is also known as ES6 
 //ES 2015 => ES5 + new features like (constants, classes etc)
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -168,5 +183,77 @@ console.log("rank3 : ", r);
 //STRING TEMPLATE
 var pirate = "Monkey.D.Luffy";
 var greeting = "Hello  ".concat(pirate, " 'single quote' \"double quote\""); //we can use like this for string concate instead of + sign 
-//we can use '," directly using string template
+//we can use '," directly using string template and also it allows multiple lines
+/* ex : let str = `shs
+aaa`;*/
 console.log(greeting);
+//for loop
+var colorsArray = ["red", "blue", "yellow", "green"];
+for (var index in colorsArray) {
+    console.log(colorsArray[index]);
+}
+//below for loop is like foreach in java
+for (var _i = 0, colorsArray_1 = colorsArray; _i < colorsArray_1.length; _i++) {
+    var color = colorsArray_1[_i];
+    console.log(color);
+}
+//to print letters from string
+var str1 = "abcd";
+for (var _c = 0, str1_1 = str1; _c < str1_1.length; _c++) {
+    var letter = str1_1[_c];
+    console.log(letter); //Using a string in a 'for...of' statement is only supported in ECMAScript 5 and higher
+}
+//class => classes are introduced in ES2015, classes are not hoisted
+//In ES2015 class body can contain only methods not properties
+var SoulReaper = /** @class */ (function () {
+    function SoulReaper() {
+    }
+    SoulReaper.prototype.greet = function () { };
+    return SoulReaper;
+}());
+var s1 = new SoulReaper();
+console.log(typeof SoulReaper);
+//3 type of methods
+var Person = /** @class */ (function () {
+    //1st constructor method
+    function Person(name) {
+        this.name = name;
+        console.log("".concat(this.name, " : in Person constructor"));
+    }
+    //static method
+    Person.staticMethod = function () {
+        console.log("static method");
+    };
+    //prototype method
+    Person.prototype.greeting = function () {
+        console.log("hello ".concat(this.name));
+    };
+    Person.prototype.getID = function () {
+        var i = 0;
+        return ++i;
+    };
+    return Person;
+}());
+var p = new Person("Luffy");
+Person.staticMethod();
+p.greeting();
+//inheritance => inheritance is possible with extends keyword in ES2015
+var Employee = /** @class */ (function (_super) {
+    __extends(Employee, _super);
+    function Employee(name) {
+        var _this = _super.call(this, name) || this;
+        console.log("".concat(_this.name, " in employee constructor"));
+        return _this;
+    }
+    Employee.prototype.getID = function () {
+        return _super.prototype.getID.call(this);
+        //return 10;
+    };
+    return Employee;
+}(Person));
+var emp1 = new Employee("Chandler");
+console.log(emp1.getID());
+//Modules => In JavaScript modules are implemented as a libraries they are not built into the language
+//but in ES2015 module syntax as been standardized
+//Module Syntax - ES2015
+//Module Loading - WIP

@@ -183,26 +183,78 @@ console.log("rank3 : ",r);
 
 let pirate = "Monkey.D.Luffy";
 let greeting = `Hello  ${pirate} 'single quote' "double quote"`;//we can use like this for string concate instead of + sign 
-//we can use '," directly using string template
+//we can use '," directly using string template and also it allows multiple lines
+/* ex : let str = `shs
+aaa`;*/
 console.log(greeting);
 
+//for loop
+let colorsArray = ["red","blue","yellow","green"];
+for(let index in colorsArray){
+    console.log(colorsArray[index]);
+}
 
+//below for loop is like foreach in java
+for(let color of colorsArray){
+    console.log(color);
+}
 
+//to print letters from string
+let str1 = "abcd";
+for(let letter of str1){
+    console.log(letter);//Using a string in a 'for...of' statement is only supported in ECMAScript 5 and higher
+}
 
+//class => classes are introduced in ES2015, classes are not hoisted
+//In ES2015 class body can contain only methods not properties
+class SoulReaper{
+    greet(){}
+}
+let s1 = new SoulReaper();
+console.log(typeof SoulReaper);
 
+//3 type of methods
 
+class Person{
+    //1st constructor method
+    constructor(name){
+        this.name = name;
+        console.log(`${this.name} : in Person constructor`);
+    }
 
+    //static method
+    static staticMethod(){
+        console.log(`static method`);
+    }
 
+    //prototype method
+    greeting(){
+        console.log(`hello ${this.name}`);
+    }
+    
+    getID(){
+        let i = 0;
+        return ++i;
+    }
+}
 
+let p = new Person("Luffy");
+Person.staticMethod();
+p.greeting();
 
+//inheritance => inheritance is possible with extends keyword in ES2015
 
+class Employee extends Person{
+    constructor(name){
+        super(name);
+        console.log(`${this.name} in employee constructor`);  
+    }
 
+    getID(){
+        return super.getID();
+        //return 10;
+    }
+}
 
-
-
-
-
-
-
-
-
+let emp1 = new Employee("Chandler");
+console.log(emp1.getID());
