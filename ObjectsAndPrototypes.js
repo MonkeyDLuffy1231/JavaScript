@@ -229,16 +229,16 @@ function EmployeeObject(name){
 EmployeeObject.prototype.getName = function(){return this.name};
 var emp2 = new EmployeeObject("Jim");
 
-function ManagerObject(name, dept){
+var ManagerObject = function (name, dept){
     this.name = name;
     this.dept = dept;
-}
+};
 var manager = new ManagerObject("Michael","sales");
 ManagerObject.prototype.getDept = function(){return this.dept};
 console.log("manager.getDept() : ",manager.getDept());//sales
 //console.log("manager.getName() : ",manager.getName());//TypeError: manager.getName is not a function
 
-manager.__proto__.__proto__ = EmployeeObject.prototype;//doubt!! why not? MangerObject.prototype._proto__
+ManagerObject.prototype.__proto__ = EmployeeObject.prototype;//manager.__proto__.__proto__ = EmployeeObject.prototype;
 console.log("manager.getName() : ",manager.getName());
 
 
