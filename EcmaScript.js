@@ -16,6 +16,33 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -25,7 +52,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-var _a;
+var _a, _b;
 //Transpiler which takes ES2015 source code we write it generates ES5 code that runs in every browser
 //Transpiler => Tracer , Bable, TypeScript  
 //npm => Node Package Manager is manager that is going to help manage our dependencies
@@ -160,7 +187,7 @@ var employee = (_a = {
 console.log(employee);
 //Destructuring Array => taking individally ele from array and assign it to individual variables
 var ninja = ["Shikamaru", "Nara", "Chunin"];
-var firstName1 = ninja[0], lastName1 = ninja[1], _b = ninja[2], rank1 = _b === void 0 ? "genin" : _b; // here rank1 has default value genin 
+var firstName1 = ninja[0], lastName1 = ninja[1], _c = ninja[2], rank1 = _c === void 0 ? "genin" : _c; // here rank1 has default value genin 
 console.log("firstName1 : ", firstName1);
 console.log("lastName1 : ", lastName1);
 console.log("rank1 : ", rank1);
@@ -199,8 +226,8 @@ for (var _i = 0, colorsArray_1 = colorsArray; _i < colorsArray_1.length; _i++) {
 }
 //to print letters from string
 var str1 = "abcd";
-for (var _c = 0, str1_1 = str1; _c < str1_1.length; _c++) {
-    var letter = str1_1[_c];
+for (var _d = 0, str1_1 = str1; _d < str1_1.length; _d++) {
+    var letter = str1_1[_d];
     console.log(letter); //Using a string in a 'for...of' statement is only supported in ECMAScript 5 and higher
 }
 //class => classes are introduced in ES2015, classes are not hoisted
@@ -295,13 +322,14 @@ console.log("myMap.get(\"name\") : ", myMap.get("name")); //returns value
 myMap.set(obj1, 10); //obj1 = {};
 myMap.set(obj2, 20); //obj2 = {};
 console.log("size : ", myMap.size); //4
+console.log("*********************************");
 //Iterating over maps
 var myMap1 = new Map();
 myMap1.set("name", "luffy");
-myMap1.set("age", 23);
+myMap1.set("age", "23");
 //below iterator is not recommended for printing both values and keys, it is recommended only to print keys
-for (var _d = 0, _e = myMap1.keys(); _d < _e.length; _d++) {
-    var key = _e[_d];
+for (var _e = 0, _f = myMap1.keys(); _e < _f.length; _e++) {
+    var key = _f[_e];
     console.log("key : ", key);
     console.log("value : ", myMap1.get(key));
 }
@@ -312,22 +340,23 @@ key :  age
 value :  23
 */
 //to print only values
-for (var _f = 0, _g = myMap1.values(); _f < _g.length; _f++) {
-    var values = _g[_f];
+for (var _g = 0, _h = myMap1.values(); _g < _h.length; _g++) {
+    var values = _h[_g];
     console.log("values : ", values);
 }
 /*
 values :  luffy
 values :  23)
 */
-for (var _h = 0, _j = myMap1.entries(); _h < _j.length; _h++) {
-    var entries = _j[_h];
+for (var _j = 0, _k = myMap1.entries(); _j < _k.length; _j++) {
+    var entries = _k[_j];
     console.log(entries);
 }
 /*output :
 ['name', 'luffy']
 ['age', 23]
 */
+console.log("************************************");
 //ES5 has foreach loop
 var arrayOfNumbers = [10, 20, 30, 40];
 arrayOfNumbers.forEach(arrayFunction);
@@ -348,3 +377,87 @@ function setFunction(value, key, callingSet) {
     console.log("newSet === callingSet : ", newSet === callingSet);
 }
 //just like weak sets we also have weak maps in ES2015 keys must be objects and the object references are weak
+//SYMBOLS => It is a primitiv type and introduced in ES2015, used to generate unique id
+var s = Symbol("First Symbol");
+console.log("typeof s : ", typeof s);
+console.log("s.toString() : ", s.toString());
+var s2 = Symbol();
+var s3 = Symbol();
+console.log("s2 === s3 : ", s2 === s3); //false
+//symbols =>we need to get hold of symbols ,so that we can use that symbol with same file or diff file we have symbol registry
+var s4 = Symbol["for"]('RegSymbol'); //Symbol.for(<value>) checks in global registry  if the values is not present then value will be added to the global registry
+var s5 = Symbol["for"]('RegSymbol'); //cheks again in global registry match found it takes value from global registry
+console.log("s4 === s5 : ", s4 === s5);
+console.log("Symbol.keyFor(s4) : ", Symbol.keyFor(s4)); //prints the key for s4\
+var fName = Symbol("firstName");
+var samuri = (_b = {},
+    _b[fName] = "Oden",
+    _b);
+console.log(Object.getOwnPropertyNames(samuri)); //static method in Object //prints []
+console.log(Object.getOwnPropertySymbols(samuri)); //static method in Object//prints [ Symbol(firstName) ]
+//SYMBOL ITERATOR
+//couple of built-in symbols are their other then Symbol.iterator go through document
+//for..of --> iterator method --> symbol iterator
+//symbol iterator => it is used to check wheather the for..of can be used or not
+//for..of is used only for functions
+var a1 = 10;
+var a2 = "hello";
+var a3 = [1, 2, 3, 4];
+var a4 = {};
+console.log("typeof a1[Symbol.iterator] : ", typeof a1[Symbol.iterator]); //undefined
+console.log("typeof a2[Symbol.iterator] : ", typeof a2[Symbol.iterator]); //function
+console.log("typeof a3[Symbol.iterator] : ", typeof a3[Symbol.iterator]); //function
+console.log("typeof a4[Symbol.iterator] : ", typeof a4[Symbol.iterator]); //undefined
+//Iterables and Iterators
+//Iterables => It is an object which implements a method whose key is symbol.iterator
+/*Iterable{
+    [Symbol.iterator]() : Iterator
+}*/
+//Iterator =>It is an object which implements a next method
+// Iterator{
+//     next() : IResultObj
+// }
+// IResultObj{
+//     value : any,
+//     done : boolean
+// }
+//creating our own iterator
+var numArray = [1, 2, 3, 4];
+function creatIterator(array) {
+    var count = 0;
+    return {
+        next: function () {
+            return count < array.length ? { value: array[count++], done: false } :
+                { value: undefined, done: true };
+        }
+    };
+}
+var myIterator = creatIterator(numArray);
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+//Generators => is a special type of function which can be paused in the middle 
+//of execution and run some other code and then resume to the same function
+//and this possible with the help of a keyword kanown as yield
+console.log("****GENERATORS****");
+function createGenerator() {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, 1];
+            case 1:
+                _a.sent();
+                console.log("After 1st yield");
+                return [4 /*yield*/, 2];
+            case 2:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}
+var myGen = createGenerator();
+console.log(myGen.next());
+console.log(myGen.next());
+console.log(myGen.next());
+console.log(myGen.next());

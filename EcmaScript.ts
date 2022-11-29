@@ -310,10 +310,12 @@ myMap.set(obj1,10);//obj1 = {};
 myMap.set(obj2,20);//obj2 = {};
 console.log("size : ",myMap.size);//4
 
+console.log("*********************************");
+
 //Iterating over maps
 let myMap1 = new Map();
 myMap1.set("name","luffy");
-myMap1.set("age",23);
+myMap1.set("age","23");
 //below iterator is not recommended for printing both values and keys, it is recommended only to print keys
 for(let key of myMap1.keys()){
     console.log("key : ",key);
@@ -342,6 +344,8 @@ for(let entries of myMap1.entries()){
 ['name', 'luffy']
 ['age', 23]
 */
+console.log("************************************");
+
 
 //ES5 has foreach loop
 var arrayOfNumbers = [10,20,30,40];
@@ -366,3 +370,105 @@ function setFunction(value,key,callingSet){
 }
 
 //just like weak sets we also have weak maps in ES2015 keys must be objects and the object references are weak
+
+//SYMBOLS => It is a primitiv type and introduced in ES2015, used to generate unique id
+let s = Symbol("First Symbol");
+console.log("typeof s : ",typeof s);
+console.log("s.toString() : ",s.toString());
+
+let s2 = Symbol();
+let s3 = Symbol();
+console.log("s2 === s3 : ",s2 === s3);//false
+
+//symbols =>we need to get hold of symbols ,so that we can use that symbol with same file or diff file we have symbol registry
+
+let s4 = Symbol.for('RegSymbol');//Symbol.for(<value>) checks in global registry  if the values is not present then value will be added to the global registry
+let s5 = Symbol.for('RegSymbol');//cheks again in global registry match found it takes value from global registry
+console.log("s4 === s5 : ",s4 === s5);
+
+console.log("Symbol.keyFor(s4) : ",Symbol.keyFor(s4));//prints the key for s4\
+
+let fName = Symbol("firstName");
+let samuri = {
+    [fName] : "Oden"
+};
+
+console.log(Object.getOwnPropertyNames(samuri));//static method in Object //prints []
+console.log(Object.getOwnPropertySymbols(samuri));//static method in Object//prints [ Symbol(firstName) ]
+
+//SYMBOL ITERATOR
+//couple of built-in symbols are their other then Symbol.iterator go through document
+
+//for..of --> iterator method --> symbol iterator
+//symbol iterator => it is used to check wheather the for..of can be used or not
+//for..of is used only for functions
+let a1 = 10;
+let a2 = "hello";
+let a3 = [1,2,3,4];
+let a4 = {};
+console.log("typeof a1[Symbol.iterator] : ",typeof a1[Symbol.iterator]);//undefined
+console.log("typeof a2[Symbol.iterator] : ",typeof a2[Symbol.iterator]);//function
+console.log("typeof a3[Symbol.iterator] : ",typeof a3[Symbol.iterator]);//function
+console.log("typeof a4[Symbol.iterator] : ",typeof a4[Symbol.iterator]);//undefined
+
+//Iterables and Iterators
+//Iterables => It is an object which implements a method whose key is symbol.iterator
+/*Iterable{
+    [Symbol.iterator]() : Iterator
+}*/
+
+//Iterator =>It is an object which implements a next method
+// Iterator{
+//     next() : IResultObj
+// }
+// IResultObj{
+//     value : any,
+//     done : boolean
+// }
+
+//creating our own iterator
+
+let numArray = [1,2,3,4];
+
+function creatIterator(array){
+    let count = 0;
+    return{
+        next : function(){
+            return count < array.length ?{value : array[count++],done : false}:
+            {value: undefined, done : true}
+        }
+    }
+}
+
+let myIterator = creatIterator(numArray);
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+
+//Generators => is a special type of function which can be paused in the middle 
+//of execution and run some other code and then resume to the same function
+//and this possible with the help of a keyword kanown as yield
+console.log("****GENERATORS****");
+
+function *createGenerator(){
+    yield 1;
+    console.log("After 1st yield");
+    yield 2;
+}
+
+let myGen = createGenerator();
+
+console.log(myGen.next());
+console.log(myGen.next());
+console.log(myGen.next());
+console.log(myGen.next());
+
+
+
+ 
+
+
+
+
