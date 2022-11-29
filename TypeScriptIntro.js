@@ -1,5 +1,16 @@
 //TypeScript is not an other language it is an extension to JS 
 //It is a most popular static extension for Js 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var a = "1";
 console.log("a : ", a);
 var value = "Hello";
@@ -77,3 +88,44 @@ var user3 = new User1("Echizen", "Ryoma", "Male");
 console.log(user3.getFullName());
 // console.log("gender : ",user3.getGender());
 console.log("age : ", User1.age);
+//Generics
+var addId = function (obj) {
+    var id = Math.random().toString(16);
+    return __assign(__assign({}, obj), { id: id });
+};
+var user4 = {
+    name: 'Jack',
+    data: {
+        meta: "foo"
+    },
+    meta: "hello"
+};
+var user5 = {
+    name: "John",
+    data: ["aa", "bb", "cc"],
+    meta: 5
+};
+var result = addId(user4);
+console.log("result : ", result);
+//Enums
+// const statuses = {
+//     notStarted : 0,
+//     inProgress : 1,
+//     done : 2
+// };
+//console.log(statuses.inProgress);
+var Status;
+(function (Status) {
+    Status[Status["NotStarted"] = 0] = "NotStarted";
+    Status[Status["InProgress"] = 1] = "InProgress";
+    Status[Status["Done"] = 2] = "Done";
+})(Status || (Status = {}));
+var notStartedStatus = Status.NotStarted;
+console.log(Status.InProgress); //1
+var Status1;
+(function (Status1) {
+    Status1["NotStarted"] = "notStarted";
+    Status1["InProgress"] = "inProgress";
+    Status1["Done"] = "done";
+})(Status1 || (Status1 = {}));
+console.log(Status1.Done);

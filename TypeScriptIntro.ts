@@ -139,13 +139,63 @@ console.log(user3.getFullName() );
 // console.log("gender : ",user3.getGender());
 console.log("age : ",User1.age);
 
- 
+//Generics
 
+const addId = <T extends object >(obj:T) => {
+    const id = Math.random().toString(16);
+    return{
+        ...obj,
+        id
+    }
+}
 
+interface User4Interface<T,V>{//generic interface
+    name : string;
+    data : T;
+    meta : V;
+}
 
+const user4 : User4Interface<{meta : string},string> = {
+    name : 'Jack',
+    data : {
+        meta : "foo"
+    },
+    meta : "hello"
+}
 
+const user5 : User4Interface<string[],number> = {
+    name : "John",
+    data : ["aa","bb","cc"],
+    meta : 5,
+    //num : 10
+}
 
+const result = addId<User4Interface<{meta : string},string>>(user4);
+console.log("result : ",result);
 
+//Enums
 
+// const statuses = {
+//     notStarted : 0,
+//     inProgress : 1,
+//     done : 2
+// };
+//console.log(statuses.inProgress);
 
+enum StatusEnums{
+    NotStarted ,
+    InProgress,
+    Done
+}
+
+let notStartedStatus : StatusEnums = StatusEnums.NotStarted;
+console.log(StatusEnums.InProgress);//1
+
+enum Status1Enum{
+    NotStarted = "notStarted" ,
+    InProgress = "inProgress",
+    Done = "done"
+}
+
+console.log(Status1Enum.Done);
 
